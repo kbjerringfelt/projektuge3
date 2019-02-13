@@ -11,18 +11,26 @@ namespace ECS.Legacy.Unit.Test
     public class ECSLegacy_unit_test
     {
         private ECS uut;
-        private int _threshold;
-
+        private FakeTempSensor _fakeTempSensor;
+        private FakeHeater _fakeHeater;
 
         [SetUp]
         public void SetUp()
         {
-            uut = new ECS(0, new FakeHeater(), new FakeTempSensor());
+            _fakeTempSensor = new FakeTempSensor();
+            _fakeHeater = new FakeHeater();
+            uut = new ECS(0, _fakeTempSensor, _fakeHeater);
+           
         }
 
         [Test]
 
+        public void Test1()
+        {
+            
 
+            Assert.That(_fakeHeater.WasTurnOnCalled, Is.EqualTo(true));
+        }
 
     }
 }

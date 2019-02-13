@@ -8,14 +8,19 @@ namespace ECS.Legacy.Unit.Test
 {
     public class FakeHeater : IHeater
     {
+        public bool WasTurnOnCalled = false;
+        public bool WasTurnOffCalled = false;
+
         public void TurnOn()
         {
-            System.Console.WriteLine("Heater is on");
+           // System.Console.WriteLine("Heater is on");
+            WasTurnOnCalled = true;
         }
 
         public void TurnOff()
         {
-            System.Console.WriteLine("Heater is off");
+            //System.Console.WriteLine("Heater is off");
+            WasTurnOffCalled = true;
         }
 
         public bool RunSelfTest()
