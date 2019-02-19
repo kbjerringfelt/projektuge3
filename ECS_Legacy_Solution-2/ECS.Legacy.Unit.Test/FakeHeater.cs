@@ -6,21 +6,24 @@ using System.Threading.Tasks;
 
 namespace ECS.Legacy.Unit.Test
 {
-    public class FakeHeater : IHeater
+    internal class FakeHeater : IHeater
     {
-        public bool WasTurnOnCalled = false;
-        public bool WasTurnOffCalled = false;
+        public int TurnOffCalledTimes { get; set; }
+        public int TurnOnCalledTimes { get; set; }
 
+        public FakeHeater()
+        {
+            TurnOffCalledTimes = 0;
+            TurnOnCalledTimes = 0;
+        }
         public void TurnOn()
         {
-           // System.Console.WriteLine("Heater is on");
-            WasTurnOnCalled = true;
+            ++TurnOnCalledTimes;
         }
 
         public void TurnOff()
         {
-            //System.Console.WriteLine("Heater is off");
-            WasTurnOffCalled = true;
+            ++TurnOffCalledTimes;
         }
 
         public bool RunSelfTest()

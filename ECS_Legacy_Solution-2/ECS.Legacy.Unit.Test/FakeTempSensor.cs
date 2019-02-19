@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace ECS.Legacy.Unit.Test
 {
-    public class FakeTempSensor : ITempSensor
+    internal class FakeTempSensor : ITempSensor
     {
+        public int Temp { get; set; }
+
+        public FakeTempSensor()
+        {
+            Temp = 0;
+        }
 
         public int GetTemp()
         {
-            return 0;
+            return Temp;
         }
 
         public bool RunSelfTest()
