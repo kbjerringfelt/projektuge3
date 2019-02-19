@@ -19,18 +19,42 @@ namespace ECS.Legacy.Unit.Test
         {
             _fakeTempSensor = new FakeTempSensor();
             _fakeHeater = new FakeHeater();
-            uut = new ECS(0, _fakeTempSensor, _fakeHeater);
+            uut = new ECS(25, _fakeTempSensor, _fakeHeater);
            
         }
 
         [Test]
 
-        public void Test1()
+        public void RegulateLowTemp_HeaterOn()
         {
-            
+            _fakeTempSensor.Temp = 20;
+            uut.Regulate();
 
-            Assert.That(_fakeHeater.WasTurnOnCalled, Is.EqualTo(true));
+            Assert.That(_fakeHeater.TurnOnCalledTimes,Is.EqualTo(1));
+        }
+
+        [Test]
+
+        public void RegulateHighTemp_HeaterOff()
+        {
+            _fakeTempSensor.Temp = 30;
+            uut.Regulate();
+
+            Assert.That(_fakeHeater.TurnOffCalledTimes, Is.EqualTo(1));
+        }
+
+        [Test]
+
+        public void RegulateNormalTemp_HeaterOn()
+        {
+            _fakeTempSensor.Temp = 25;
+            uut.Regulate();
+
+            Assert.That(_fakeHeater.TurnOnCalledTimes, Is.EqualTo(0));
         }
 
     }
-}
+
+
+    }
+
